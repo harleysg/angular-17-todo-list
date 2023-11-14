@@ -22,7 +22,12 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["./projects/todo-app/src/app/*"],
+      "@core/*": ["./projects/todo-app/src/core/*"],
+      "@shared/*": ["./projects/todo-app/src/shared/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

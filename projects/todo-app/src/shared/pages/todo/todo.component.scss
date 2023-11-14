@@ -1,0 +1,74 @@
+:host {
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    margin-bottom: clamp(10px, 2vmin, 15px);
+  }
+}
+
+nav {
+  display: flex;
+  gap: 1ch;
+
+  button {
+    border-radius: 0;
+    border-width: 1px;
+    border-color: #a5a5a5;
+    border-style: solid;
+  }
+}
+
+form {
+  display: flex;
+
+  input, button {
+    border-color: #a5a5a5;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  input {
+    width: 100%;
+    max-width: clamp(300px, 100%, 9rem);
+    min-height: 4ch;
+    border-right-width: 0;
+  }
+
+  button {
+    border-radius: 0;
+  }
+}
+
+section {
+  display: grid;
+  row-gap: 1ch;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  max-width: clamp(300px, 100%, 21.1rem);
+
+  li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 4px;
+
+    label {
+      display: flex;
+      gap: 1ch;
+    }
+
+    button, input {
+      user-select: none;
+    }
+
+    input {
+      margin-left: 0;
+    }
+  }
+}

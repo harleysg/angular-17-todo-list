@@ -1,0 +1,67 @@
+<section>
+  <nav>
+    filters:
+    <button (click)="viewList('all')">ToDos</button>
+    <button (click)="viewList('completed')">Completed</button>
+    <button (click)="viewList('deleted')">Deleted</button>
+  </nav>
+  <form (submit)="add($event, text.value)">
+    <input type="search" #text required oninvalid="this.setCustomValidity('Value is require')"
+      onvalid="this.setCustomValidity('')" />
+    <button>Add</button>
+  </form>
+
+  <ng-template *ngIf="list.visible === list.type.all" [ngTemplateOutlet]="todoListRef"></ng-template>
+  <ng-template *ngIf="list.visible === list.type.completed" [ngTemplateOutlet]="completedListRef"></ng-template>
+  <ng-template *ngIf="list.visible === list.type.deleted" [ngTemplateOutlet]="deletedListRef"></ng-template>
+</section>
+
+<ng-template #todoListRef>
+  <h2>Todos</h2>
+  <ul>
+    @for (todo of todos; track $index) {
+    <li>
+      <label>
+        <input type="checkbox" (change)="toggle($index, todo)" [checked]="todo.done" />
+        @if (todo.done) {
+        <s>{{ todo.text }}</s>
+        } @else {
+        <span>{{ todo.text }}</span>
+        }
+      </label>
+      <button (click)="done(todo.id)">x</button>
+    </li>
+    } @empty {
+    <li>No todos</li>
+    }
+  </ul>
+</ng-template>
+
+<ng-template #completedListRef>
+  <h2>Completed</h2>
+  <ul>
+    @for (todo of getCompleteList(); track $index) {
+    <li>
+      <label>
+        <input type="checkbox" (change)="toggle($index, todo)" [checked]="todo.done" />
+        <span>{{ todo.text }}</span>
+      </label>
+    </li>
+    } @empty {
+    <li>No deleted todos</li>
+    }
+  </ul>
+</ng-template>
+
+<ng-template #deletedListRef>
+  <h2>Deleted</h2>
+  <ul>
+    @for (todo of deleted; track $index) {
+    <li>
+      <span>{{ todo.text }}</span>
+    </li>
+    } @empty {
+    <li>No deleted todos</li>
+    }
+  </ul>
+</ng-template>

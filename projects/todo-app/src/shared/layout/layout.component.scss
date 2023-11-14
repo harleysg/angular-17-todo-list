@@ -1,0 +1,44 @@
+.o-wrapper {
+  width: 100%;
+  max-width: 64em;
+  padding-inline: clamp(1ch, 100%, 3vmin);
+  margin-inline: auto;
+}
+
+.o-header-wrapper {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+
+  figure {
+    margin: 1ch;
+    margin-left: 0;
+  }
+
+  nav {
+    display: flex;
+    justify-content: end;
+    gap: 1ch;
+
+    a {
+      color: var(--vivid-pink)
+    }
+  }
+}
+
+header {
+  position: static;
+  top: 0;
+}
+
+main {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: grid;
+  gap: 1ch;
+  grid-template-rows: min-content 1fr;
+}

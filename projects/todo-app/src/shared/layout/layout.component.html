@@ -1,0 +1,22 @@
+<main>
+  <header>
+    <div class="o-wrapper o-header-wrapper">
+      <figure>
+        <app-brand/>
+      </figure>
+      <nav>
+        @for (item of routes; track $index) {
+          <a [routerLink]="[item.link]"
+              routerLinkActive="activebutton"
+              routerLinkActive="router-link-active"
+              ariaCurrentWhenActive="page">
+              {{ item.label }}
+          </a>
+        }
+      </nav>
+    </div>
+  </header>
+  <div class="o-wrapper">
+    <ng-content></ng-content>
+  </div>
+</main>

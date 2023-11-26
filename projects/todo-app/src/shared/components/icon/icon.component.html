@@ -1,0 +1,11 @@
+<span class="component">
+  <img *ngIf="imgSrc" [src]="imgSrc" alt="">
+  <i
+    class="component-icon {{iconName}}"
+    aria-hidden="true"
+    [hidden]="hideIcon"
+    [innerHTML]="_iconAsHTML"></i>
+  <span class="component-content">
+    <ng-content></ng-content>
+  </span>
+</span>

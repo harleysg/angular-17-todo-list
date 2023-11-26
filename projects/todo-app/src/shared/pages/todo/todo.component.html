@@ -1,9 +1,12 @@
 <section>
   <nav>
-    filters:
+    <app-icon [hideIcon]="showIcon" style="--sg-icon-color: var(--hot-red);">
+      filters: {{showIcon}}
+    </app-icon>
     <button (click)="viewList('all')">ToDos</button>
     <button (click)="viewList('completed')">Completed</button>
     <button (click)="viewList('deleted')">Deleted</button>
+    <button (click)="toggleIcon()">Toggle Icon</button>
   </nav>
   <form (submit)="add($event, text.value)">
     <input type="search" #text required oninvalid="this.setCustomValidity('Value is require')"
@@ -17,19 +20,41 @@
 </section>
 
 <ng-template #todoListRef>
-  <h2>Todos</h2>
+  <h2>
+    <app-icon style="--sg-icon-font-size: 80%; --sg-icon-color: var(--hot-red);" iconName="fa-solid fa-list"
+      [iconCode]="iconCode" [hideIcon]="showIcon">
+      Todos
+    </app-icon>
+  </h2>
   <ul>
     @for (todo of todos; track $index) {
     <li>
+      <label class="checkbox">
+        <input type="checkbox" (change)="toggle($index, todo)" [checked]="todo.done" hidden/>
+        <svg focusable="false" width="24" height="24" viewBox="0 0 24 24" class=" NMm5M">
+          <path
+            fill="currentColor"
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z">
+          </path>
+        </svg>
+        <i class="check"></i>
+      </label>
       <label>
-        <input type="checkbox" (change)="toggle($index, todo)" [checked]="todo.done" />
         @if (todo.done) {
         <s>{{ todo.text }}</s>
         } @else {
         <span>{{ todo.text }}</span>
         }
       </label>
-      <button (click)="done(todo.id)">x</button>
+      <label>
+        <button (click)="done(todo.id)">
+          <svg focusable="false" width="20" height="20" viewBox="0 0 24 24" class=" NMm5M">
+            <path fill="currentColor"
+              d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+            </path>
+          </svg>
+        </button>
+      </label>
     </li>
     } @empty {
     <li>No todos</li>
